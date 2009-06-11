@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-if_app_needs_recipe("thinking_sphinx") do |app,data,index|
+#if_app_needs_recipe("thinking_sphinx") do |app,data,index|
   
   http_request "reporting for sphinx" do
     url node[:reporting_url]
@@ -63,4 +63,4 @@ if_app_needs_recipe("thinking_sphinx") do |app,data,index|
   link "/data/#{app}/current/config/thinkingsphinx" do
     to "/data/#{app}/shared/config/thinkingsphinx"
   end
-end
+#end
