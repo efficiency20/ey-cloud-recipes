@@ -55,8 +55,6 @@ node[:applications].each do |app,data|
     variables({
       :app_name => app
     })
-    notifies :run, resources(:execute => "restart-monit")
-    action :create_if_missing
   end
   
   link "/data/#{app}/current/config/sphinx.yml" do
