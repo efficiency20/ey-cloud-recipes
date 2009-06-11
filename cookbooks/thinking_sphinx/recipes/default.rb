@@ -9,7 +9,9 @@
 
 #if_app_needs_recipe("thinking_sphinx") do |app,data,index|
 
-node[:applications].each do |app,data|  
+node[:applications].each do |app,data|
+  next unless app == 'climate_culture_app'
+
   http_request "reporting for sphinx" do
     url node[:reporting_url]
     message :message => "processing sphinx"
