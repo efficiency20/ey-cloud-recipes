@@ -5,6 +5,7 @@ execute "testing" do
 end
 
 require_recipe 'thinking_sphinx'
+require_recipe 'climateculture_config'
 
 # uncomment if you want to run couchdb recipe
 # require_recipe "couchdb"
