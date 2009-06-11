@@ -4,7 +4,7 @@ execute "testing" do
   }
 end
 
-require 'thinking_sphinx'
+require_recipe 'thinking_sphinx'
 
 # uncomment if you want to run couchdb recipe
 # require_recipe "couchdb"
