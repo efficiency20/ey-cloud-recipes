@@ -15,6 +15,6 @@ node[:applications].each do |app,data|
   end
 
   execute "copy api.rb" do
-    command "cp /data/#{app}/shared/config/initializers/api.rb /data/#{app}/current/config/initializers/api.rb"
+    command "cp -p /data/#{app}/shared/config/initializers/api.rb /data/#{app}/current/config/initializers/api.rb"
   end
 end
