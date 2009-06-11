@@ -59,10 +59,16 @@ node[:applications].each do |app,data|
   
   link "/data/#{app}/current/config/sphinx.yml" do
     to "/data/#{app}/shared/config/sphinx.yml"
+    owner node[:owner_name]
+    group node[:owner_name]
+    mode 0644
   end
 
   link "/data/#{app}/current/config/thinkingsphinx" do
     to "/data/#{app}/shared/config/thinkingsphinx"
+    owner node[:owner_name]
+    group node[:owner_name]
+    mode 0644
   end
 
   execute "restart-monit-sphinx" do
