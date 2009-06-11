@@ -47,7 +47,7 @@ node[:applications].each do |app,data|
       })
   end
 
-  template "/data/#{appname}/shared/config/sphinx.yml" do
+  template "/data/#{app}/shared/config/sphinx.yml" do
     owner node[:owner_name]
     group node[:owner_name]
     mode 0644
