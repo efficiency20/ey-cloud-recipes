@@ -15,8 +15,6 @@
     action :post
     epic_fail true
   end
-  
-  require_recipe "monit"
 
   directory "/var/run/sphinx" do
     owner node[:owner_name]
@@ -38,19 +36,23 @@
     action :create
   end
 
-  sphinx_service = find_app_service(app, "sphinx")
-  
-  monitrc "sphinx", :app_name => app,
-                    :sphinx_service => sphinx_service
-  
+  template "/etc/monit.d/sphinx.#{app}.monitrc" do
+      source "sphinx.monitrc.erb"
+      owner node[:owner_name]
+      group node[:owner_name]
+      mode 0644
+      variables({
+        :app_name => app
+      })
+  end
+
   template "/data/#{appname}/shared/config/sphinx.yml" do
     owner node[:owner_name]
     group node[:owner_name]
     mode 0644
     source "sphinx.yml.erb"
     variables({
-      :app_name => app,
-      :sphinx_service => sphinx_service
+      :app_name => app
     })
     notifies :run, resources(:execute => "restart-monit")
     action :create_if_missing
@@ -63,4 +65,11 @@
   link "/data/#{app}/current/config/thinkingsphinx" do
     to "/data/#{app}/shared/config/thinkingsphinx"
   end
+
+  execute "restart-monit-sphinx" do
+    command "/usr/bin/monit reload && " +
+            "/usr/bin/monit restart all -g sphinx_#{app}"
+    action :run
+  end
+
 #end
