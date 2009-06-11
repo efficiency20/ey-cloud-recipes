@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: sphinx
+# Cookbook Name:: thinking_sphinx
 # Recipe:: default
 #
 # Copyright 2008, Engine Yard, Inc.
@@ -7,7 +7,7 @@
 # All rights reserved - Do Not Redistribute
 #
 
-if_app_needs_recipe("sphinx") do |app,data,index|
+if_app_needs_recipe("thinking_sphinx") do |app,data,index|
   
   http_request "reporting for sphinx" do
     url node[:reporting_url]
