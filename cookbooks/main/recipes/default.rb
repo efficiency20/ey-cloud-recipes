@@ -14,4 +14,4 @@ require_recipe 'climateculture_config'
 #require_recipe "integrity"
 
 # uncomment to turn use the MBARI ruby patches for decreased memory usage and better thread/continuationi performance
-# require_recipe "mbari-ruby"
+require_recipe "mbari-ruby"
