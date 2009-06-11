@@ -1,0 +1,5 @@
+check process sphinx_<%= @app_name %>_<%= @sphinx_service[:base_port] %>
+  with pidfile /var/run/sphinx/<%= @app_name %>.pid
+  start program = "/engineyard/bin/thinking_sphinx_searchd <%= @app_name %> start" as uid <%= @node[:owner_name] %> and gid <%= @node[:owner_name] %>
+  stop program = "/engineyard/bin/thinking_sphinx_searchd <%= @app_name %> stop" as uid <%= @node[:owner_name] %> and gid <%= @node[:owner_name] %>
+  group sphinx_<%= @app_name %>
