@@ -8,7 +8,8 @@
 #
 
 #if_app_needs_recipe("thinking_sphinx") do |app,data,index|
-  
+
+node[:applications].each do |app,data|  
   http_request "reporting for sphinx" do
     url node[:reporting_url]
     message :message => "processing sphinx"
@@ -72,4 +73,4 @@
     action :run
   end
 
-#end
+end
