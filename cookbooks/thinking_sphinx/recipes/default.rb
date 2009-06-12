@@ -2,11 +2,6 @@
 # Cookbook Name:: thinking_sphinx
 # Recipe:: default
 #
-# Copyright 2008, Engine Yard, Inc.
-#
-# All rights reserved - Do Not Redistribute
-#
-
 #if_app_needs_recipe("thinking_sphinx") do |app,data,index|
 
 node[:applications].each do |app,data|
