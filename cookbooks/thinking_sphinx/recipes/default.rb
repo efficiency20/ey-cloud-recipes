@@ -14,10 +14,10 @@ node[:applications].each do |app,data|
   end
 
   directory "/var/log/engineyard/sphinx/#{app}" do
+    recursive true
     owner node[:owner_name]
     group node[:owner_name]
     mode 0755
-    recursive true
   end
   
   remote_file "/etc/logrotate.d/sphinx" do
