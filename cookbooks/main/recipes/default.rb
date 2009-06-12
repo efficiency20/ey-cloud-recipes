@@ -5,6 +5,7 @@ execute "testing" do
 end
 
 require_recipe 'libmemcached_25_14'
+require_recipe 'memcached_13_gem'
 require_recipe 'thinking_sphinx'
 require_recipe 'climateculture_config'
 
