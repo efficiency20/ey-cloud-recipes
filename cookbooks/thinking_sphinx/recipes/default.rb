@@ -12,13 +12,6 @@
 node[:applications].each do |app,data|
   next unless app == 'climate_culture_app'
 
-  http_request "reporting for sphinx" do
-    url node[:reporting_url]
-    message :message => "processing sphinx"
-    action :post
-    epic_fail true
-  end
-
   directory "/var/run/sphinx" do
     owner node[:owner_name]
     group node[:owner_name]
