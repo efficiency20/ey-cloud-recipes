@@ -4,6 +4,7 @@ execute "testing" do
   }
 end
 
+require_recipe "mbari-ruby"
 require_recipe 'libmemcached_25_14'
 require_recipe 'memcached_13_gem'
 require_recipe 'thinking_sphinx'
@@ -14,6 +15,3 @@ require_recipe 'climateculture_config'
 
 # uncomment to turn your instance into an integrity CI server
 #require_recipe "integrity"
-
-# uncomment to turn use the MBARI ruby patches for decreased memory usage and better thread/continuationi performance
-# require_recipe "mbari-ruby"
