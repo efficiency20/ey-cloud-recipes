@@ -27,3 +27,16 @@ execute "install climate_culture_app custom gems" do
     rake gems:build_and_install
   }
 end
+
+execute "install climate_culture_app custom monit scripts" do
+  command "cp -p /data/monit.d/*monit.rc /etc/monit.d/"
+end if File.directory?("/etc/monit.d/")
+
+execute "restart-monit-#{app}" do
+  command %Q{
+   /usr/bin/monit stop all -g #{app} &&
+   /usr/bin/monit reload &&
+   /usr/bin/monit start all -g #{app}
+  }
+  action :run
+end
