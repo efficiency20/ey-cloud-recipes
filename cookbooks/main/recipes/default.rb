@@ -4,7 +4,7 @@ execute "testing" do
   }
 end
 
-require_recipe "mbari-ruby"
+#require_recipe "mbari-ruby"
 require_recipe 'libmemcached_25_14'
 require_recipe 'memcached_13_gem'
 require_recipe 'thinking_sphinx'
