@@ -12,3 +12,7 @@ execute "install-libmemcached-0.25.14" do
   }
   not_if { File.exists?("/usr/local/lib/libmemcached.so") }
 end
+
+execute "ldconfig" do
+  command "ldconfig"
+end
