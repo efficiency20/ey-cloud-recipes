@@ -34,9 +34,8 @@ end if File.directory?("/etc/monit.d/")
 
 execute "restart-monit-#{app}" do
   command %Q{
-   /usr/bin/monit stop all -g #{app} &&
-   /usr/bin/monit reload &&
-   /usr/bin/monit start all -g #{app}
-  }
+   /usr/bin/monit stop all -g #{app} && \
+   /usr/bin/monit reload && \
+   /usr/bin/monit start all -g #{app} }
   action :run
 end
