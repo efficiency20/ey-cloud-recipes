@@ -23,9 +23,15 @@ end if File.exists?("/data/#{app}/shared/config/initializers/api.rb")
 
 execute "install climate_culture_app custom gems" do
   command %Q{
-    cd /data/#{app}/current
-    rake gems:build_and_install
-  }
+    cd /data/#{app}/current \
+    rake gems:build_and_install }
+end
+
+execute "generate thinking-sphinx conf and index" do
+  command %Q{
+    cd /data/#{app}/current \
+    rake RAILS_ENV=#{@node[:environment][:framework_env]} ts:conf && \
+    rake RAILS_ENV=#{@node[:environment][:framework_env]} ts:index}
 end
 
 execute "install climate_culture_app custom monit scripts" do
@@ -34,8 +40,8 @@ end if File.directory?("/etc/monit.d/")
 
 execute "restart-monit-#{app}" do
   command %Q{
-   /usr/bin/monit stop all -g #{app} && \
    /usr/bin/monit reload && \
-   /usr/bin/monit start all -g #{app} }
+   /usr/bin/monit restart all -g #{app} && \
+   /usr/bin/monit restart all -g sphinx_#{app} }
   action :run
 end

@@ -56,18 +56,4 @@ node[:applications].each do |app,data|
     to "/data/#{app}/shared/config/thinkingsphinx"
   end
 
-  execute "configure-sphinx" do
-    command "/engineyard/bin/thinking_sphinx_searchd climate_culture_app configure"
-  end
-
-  execute "configure-sphinx" do
-    command "/engineyard/bin/thinking_sphinx_searchd climate_culture_app reindex"
-  end
-
-  execute "restart-monit-sphinx" do
-    command "/usr/bin/monit reload && " +
-            "/usr/bin/monit restart all -g sphinx_#{app}"
-    action :run
-  end
-
 end
