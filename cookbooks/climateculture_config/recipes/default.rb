@@ -23,7 +23,7 @@ end if File.exists?("/data/#{app}/shared/config/initializers/api.rb")
 
 execute "install climate_culture_app custom gems" do
   command %Q{
-    cd /data/#{app}/current \
+    cd /data/#{app}/current && \
     rake gems:build_and_install }
 end
 
