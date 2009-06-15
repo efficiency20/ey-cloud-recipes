@@ -1,11 +1,11 @@
 #
-# Cookbook Name:: memcached_13_gem
+# Cookbook Name:: memcached_gem
 # Recipe:: default
 #
 
-execute "install-memcached-0.13.gem" do
-  command "cd /data/gems && gem install memcached-0.13.gem --no-rdoc --no-ri"
-  not_if "gem list | grep 'memcached (0.13)'"
+execute "install-memcached-gem" do
+  command 'env ARCHFLAGS="-arch i386" gem install -r -V memcached --no-rdoc --no-ri'
+  not_if "gem list | grep memcached"
 end
 
 link "/data/climate_culture_app/current/config/memcached.yml" do
