@@ -5,9 +5,6 @@ execute "testing" do
 end
 
 #require_recipe "mbari-ruby"
-require_recipe 'libmemcached_25_14'
-require_recipe 'memcached_gem'
-require_recipe 'thinking_sphinx'
 require_recipe 'climateculture_config'
 
 # uncomment if you want to run couchdb recipe
