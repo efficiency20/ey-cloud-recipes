@@ -42,10 +42,14 @@ execute "install climate_culture_app custom monit scripts" do
   command "cp -p /data/monit.d/*.monitrc /etc/monit.d/"
 end if File.directory?("/etc/monit.d/")
 
-execute "restart-monit-#{app}" do
-  command %Q{
-   /usr/bin/monit reload && \
-   /usr/bin/monit restart all -g #{app} && \
-   /usr/bin/monit restart all -g sphinx_#{app} }
-  action :run
+execute "monit-stop-all" do
+  command "/usr/bin/monit stop all"
+end
+
+execute "monit-reload" do
+  command "/usr/bin/monit reload"
+end
+
+execute "monit-start-all" do
+  command "/usr/bin/monit start all"
 end
