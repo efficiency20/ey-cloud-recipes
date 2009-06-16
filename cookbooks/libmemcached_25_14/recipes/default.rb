@@ -3,14 +3,16 @@
 # Recipe:: default
 #
 
-execute "install-libmemcached-0.25.14" do
-  command %Q{
-    cd /tmp && \
-    tar xzf /data/unix/libmemcached-0.25.14.tar.gz && \
-    cd libmemcached-0.25.14 && \
-    /tmp/libmemcached-0.25.14/configure && make && make install
-  }
-  not_if { File.exists?("/usr/local/lib/libmemcached.so") }
+bash "install_something" do
+user "root"
+cwd "/tmp"
+code <<-EOH
+tar xzf /data/unix/libmemcached-0.25.14.tar.gz
+cd libmemcached-0.25.14
+/tmp/libmemcached-0.25.14/configure
+make
+make install
+EOH
 end
 
 execute "ldconfig" do

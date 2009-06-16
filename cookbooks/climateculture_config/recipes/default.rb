@@ -5,8 +5,9 @@
 
 app = 'climate_culture_app'
 
-execute "monit-stop-all" do
-  command "/usr/bin/monit stop all"
+bash "monit-reload" do
+  user "root"
+  code "/usr/bin/monit stop all"
 end
 
 require_recipe 'libmemcached_25_14'
@@ -48,12 +49,7 @@ execute "install climate_culture_app custom monit scripts" do
   command "cp -p /data/monit.d/*.monitrc /etc/monit.d/"
 end if File.directory?("/etc/monit.d/")
 
-execute "monit-reload" do
-  command "/usr/bin/monit reload"
-  action :run
-end
-
-execute "monit-start-all" do
-  command "/usr/bin/monit start all"
-  action :run
+bash "monit-reload-restart" do
+  user "root"
+  code "/usr/bin/monit reload && /usr/bin/monit start all"
 end
