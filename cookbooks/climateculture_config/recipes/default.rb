@@ -34,10 +34,8 @@ execute "generate thinking-sphinx conf and index" do
     rake RAILS_ENV=#{@node[:environment][:framework_env]} ts:index}
 end
 
-directory "/var/log/engineyard/sphinx/#{app}" do
-  owner node[:owner_name]
-  group node[:owner_name]
-  recursive true
+execute "fix sphinx permissions" do
+  command "chown -R #{node[:owner_name]}:#{node[:owner_name]} /var/log/engineyard/sphinx/#{app}"
 end
 
 execute "install climate_culture_app custom monit scripts" do
