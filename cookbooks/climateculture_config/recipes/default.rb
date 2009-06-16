@@ -5,7 +5,7 @@
 
 app = 'climate_culture_app'
 
-bash "monit-reload" do
+bash "monit-stop-all" do
   user "root"
   code "/usr/bin/monit stop all"
 end
@@ -51,5 +51,5 @@ end if File.directory?("/etc/monit.d/")
 
 bash "monit-reload-restart" do
   user "root"
-  code "/usr/bin/monit reload && /usr/bin/monit start all"
+  code "pkill -9 monit && monit"
 end
