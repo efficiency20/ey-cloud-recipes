@@ -46,7 +46,7 @@ execute "ensure sphinx index permissions" do
 end
 
 execute "install climate_culture_app custom monit scripts" do
-  command "cp -p /data/monit.d/*.monitrc /etc/monit.d/"
+  command "cp /data/monit.d/*.monitrc /etc/monit.d/"
 end if File.directory?("/etc/monit.d/")
 
 bash "monit-reload-restart" do
