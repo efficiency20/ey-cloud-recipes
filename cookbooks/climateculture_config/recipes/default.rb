@@ -47,7 +47,7 @@ end
 
 execute "install climate_culture_app custom monit scripts" do
   command "cp /data/monit.d/*.monitrc /etc/monit.d/"
-end if File.directory?("/etc/monit.d/")
+end
 
 bash "monit-reload-restart" do
   user "root"
