@@ -5,10 +5,10 @@
 
 app = 'climate_culture_app'
 
-bash "monit-stop-all" do
-  user "root"
-  code "/usr/bin/monit stop all"
-end
+# bash "monit-stop-all" do
+#   user "root"
+#   code "/usr/bin/monit stop all"
+# end
 
 require_recipe 'libmemcached_25_14'
 require_recipe 'memcached_gem'
