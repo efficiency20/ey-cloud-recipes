@@ -30,6 +30,10 @@ execute "copy api.rb" do
   command "cp -p /data/#{app}/shared/config/initializers/api.rb /data/#{app}/current/config/initializers/api.rb"
 end if File.exists?("/data/#{app}/shared/config/initializers/api.rb")
 
+execute "copy staging.rb" do
+  command "cp -p /data/#{app}/shared/config/environments/staging.rb /data/#{app}/current/config/environments/staging.rb"
+end if File.exists?("/data/#{app}/shared/config/environments/staging.rb")
+
 execute "install climate_culture_app custom gems" do
   command "cd /data/#{app}/current && rake gems:build_and_install"
 end
