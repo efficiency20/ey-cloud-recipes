@@ -13,6 +13,7 @@ end
 require_recipe 'libmemcached_25_14'
 require_recipe 'memcached_gem'
 require_recipe 'thinking_sphinx'
+require_recipe 'delayed_job'
 
 link "/data/#{app}/current/config/facebooker.yml" do
   to "/data/#{app}/shared/config/facebooker.yml"
