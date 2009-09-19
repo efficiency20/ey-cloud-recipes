@@ -52,10 +52,6 @@ execute "ensure sphinx index permissions" do
   command "chown -R #{node[:owner_name]}:#{node[:owner_name]} /var/log/engineyard/sphinx/#{app}"
 end
 
-execute "install climate_culture_app custom monit scripts" do
-  command "cp /data/monit.d/*.monitrc /etc/monit.d/"
-end
-
 bash "monit-reload-restart" do
   user "root"
   code "/usr/bin/monit reload && /usr/bin/monit start all"
