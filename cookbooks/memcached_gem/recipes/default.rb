@@ -4,7 +4,7 @@
 #
 
 execute "install-memcached-gem" do
-  command 'env ARCHFLAGS="-arch i386" gem install -r -V memcached --no-rdoc --no-ri'
+  command 'gem install memcached --no-rdoc --no-ri'
   not_if "gem list | grep memcached"
 end
 
